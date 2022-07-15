@@ -20,7 +20,7 @@ class SettingsController extends GetxController {
   }
 
   void readName() {
-    final nameValue = _storage.read(_nameKey);
+    final nameValue = _storage.read(_nameKey) ?? "username";
     username.value = nameValue;
   }
 
