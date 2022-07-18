@@ -146,7 +146,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2022),
+      firstDate: DateTime(2022, DateTime.now().month, DateTime.now().day),
       lastDate: DateTime(2050),
     );
 
