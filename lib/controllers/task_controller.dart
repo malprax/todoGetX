@@ -15,6 +15,7 @@ class TaskController extends GetxController {
   var selectedColor = 0.obs;
   var selectedTime = TimeOfDay.now().obs;
   var selectedDate = DateTime.now().obs;
+  var filteredDate = DateTime.now().obs;
   final NotificationService _notificationService = NotificationService();
 
   @override

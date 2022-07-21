@@ -112,7 +112,6 @@ class CreateTaskPage extends StatelessWidget {
       context: context,
       initialTime: _taskController.selectedTime.value,
     );
-
     if (pickedTime != null) {
       _taskController.selectedTime.value = pickedTime;
     }
