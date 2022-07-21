@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:todo/controllers/task_controller.dart';
-import 'package:todo/models/task_model.dart';
-import 'package:todo/utils/routes.dart';
+
+enum SocialMedia {
+  linkedIn(FontAwesomeIcons.linkedin),
+  twitter(FontAwesomeIcons.twitter),
+  github(FontAwesomeIcons.github),
+  instagram(FontAwesomeIcons.instagram);
+
+  final IconData icon;
+  const SocialMedia(this.icon);
+}
 
 TextStyle kTextStyleGrey(double size) {
   return GoogleFonts.arimaMadurai(
@@ -93,7 +100,6 @@ String showGreeting() {
   }
   return 'Good Night';
 }
-
 
 String formattingTimeOfDay(TimeOfDay timeOfDay) {
   final now = DateTime.now();

@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:todo/utils/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsController extends GetxController {
@@ -29,20 +31,11 @@ class SettingsController extends GetxController {
     readName();
   }
 
-  void openTwitter() {
-    _openUrl(_uriTwitter);
-  }
-
-  void openInstagram() {
-    _openUrl(_uriInsta);
-  }
-
-  void openLinkedIn() {
-    _openUrl(_uriLinkedIn);
-  }
-
-  void openGithub() {
-    _openUrl(_uriGitHub);
+  void openSelectedSocialMedia(SocialMedia media) {
+    if (media == SocialMedia.instagram) _openUrl(_uriInsta);
+    if (media == SocialMedia.twitter) _openUrl(_uriTwitter);
+    if (media == SocialMedia.github) _openUrl(_uriGitHub);
+    if (media == SocialMedia.linkedIn) _openUrl(_uriLinkedIn);
   }
 
   void _openUrl(String uri) async {
@@ -50,7 +43,9 @@ class SettingsController extends GetxController {
     try {
       await launchUrl(url);
     } catch (error) {
-      print('Could not launch $url');
+      if (kDebugMode) {
+        print('Could not launch $url');
+      }
     }
   }
 }

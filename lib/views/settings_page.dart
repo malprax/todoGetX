@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:todo/widgets/settings/settings_header.dart';
 import '../utils/constants.dart';
 import '../widgets/settings/display_name.dart';
@@ -19,18 +20,27 @@ class SettingsPage extends StatelessWidget {
             children: [
               const SettingsHeader(),
               kVerticalSpace(20),
-              IconTextRow(icon: Icons.person, label: 'Username'),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const FaIcon(Icons.person, size: 24),
+                  const SizedBox(width: 10),
+                  Text('Username', style: kTextStyleBlack(20)),
+                ],
+              ),
               DisplayName(),
               Divider(thickness: 2, color: Colors.amber.withOpacity(0.3)),
               Text('Get in Touch With Dev', style: kTextStyleBlack(20)),
               Divider(thickness: 2, color: Colors.amber.withOpacity(0.3)),
-              IconTextRow(icon: FontAwesomeIcons.twitter, label: 'Twitter'),
-              IconTextRow(icon: FontAwesomeIcons.github, label: 'Github'),
-              IconTextRow(
-                icon: FontAwesomeIcons.instagram,
-                label: 'Instagram',
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: SocialMedia.values.length,
+                itemBuilder: (ctx, index) {
+                  final socialMedias = SocialMedia.values.toList();
+                  final socialType = socialMedias[index];
+                  return IconTextRow(socialMedia: socialType);
+                },
               ),
-              IconTextRow(icon: FontAwesomeIcons.linkedin, label: 'LinkedIn'),
             ],
           ),
         ),
