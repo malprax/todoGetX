@@ -9,6 +9,7 @@ import '../utils/constants.dart';
 
 class TaskController extends GetxController {
   var tasksList = <TaskModel>[].obs;
+  var filteredTasks = <TaskModel>[].obs;
   var todayTasksList = <TaskModel>[].obs;
   int get tasksLength => tasksList.length;
   var taskById = <TaskModel>[].obs;
@@ -68,6 +69,17 @@ class TaskController extends GetxController {
     tasksList.value = tasks.map((data) => TaskModel.fromJson(data)).toList();
     _getTodayTasks();
     _changeTaskStatusAutomatically();
+    getFilteredTasksByDate();
+  }
+
+  void getFilteredTasksByDate() {
+    final selectedDate = DateFormat.yMd().format(filteredDate.value);
+    filteredTasks.clear();
+    for (TaskModel task in tasksList) {
+      if (task.date == selectedDate) {
+        filteredTasks.add(task);
+      }
+    }
   }
 
   void delete(TaskModel task) async {

@@ -30,6 +30,7 @@ class DateBar extends StatelessWidget {
         dateTextStyle: kTextStyleBoldBlack(18),
         onDateChange: (selectedDate) {
           _taskController.filteredDate.value = selectedDate;
+          _taskController.getFilteredTasksByDate();
         },
       ),
     );

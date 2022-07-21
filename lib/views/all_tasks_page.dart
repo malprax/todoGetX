@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:todo/utils/constants.dart';
 import 'package:todo/widgets/all_tasks/all_task_header.dart';
-import '../controllers/task_controller.dart';
 import '../widgets/all_tasks/date_bar.dart';
 import '../widgets/all_tasks/display_tasks.dart';
 
