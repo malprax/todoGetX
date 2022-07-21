@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:todo/db/db_helper.dart';
 import 'package:todo/models/task_model.dart';
-
+import '../services/notification_service.dart';
 import '../utils/constants.dart';
 
 class TaskController extends GetxController {
@@ -12,9 +12,15 @@ class TaskController extends GetxController {
   var todayTasksList = <TaskModel>[].obs;
   int get tasksLength => tasksList.length;
   var taskById = <TaskModel>[].obs;
+  var selectedColor = 0.obs;
+  var selectedTime = TimeOfDay.now().obs;
+  var selectedDate = DateTime.now().obs;
+  final NotificationService _notificationService = NotificationService();
 
   @override
   void onInit() {
+    _notificationService.initNotification();
+    _notificationService.requestIOSPermission();
     getAllTasks();
     super.onInit();
   }
@@ -30,7 +36,7 @@ class TaskController extends GetxController {
     todayTasksList.assignAll(items.toList());
   }
 
-  void changeTaskStatusAutomatically() {
+  void _changeTaskStatusAutomatically() {
     final date = DateFormat.yMd().format(DateTime.now());
     var time = formattingTimeOfDay(TimeOfDay.now());
     for (var task in tasksList) {
@@ -40,8 +46,19 @@ class TaskController extends GetxController {
     }
   }
 
-  Future<int> addTask(TaskModel task) async {
-    return await DBHelper.insert(task);
+  Future<void> addTask(String title, String description) async {
+    final TaskModel newTask = TaskModel(
+      title: title.trim(),
+      description: description.trim(),
+      isDone: 0,
+      isFavorite: 0,
+      date: DateFormat.yMd().format(selectedDate.value),
+      time: formattingTimeOfDay(selectedTime.value),
+      color: selectedColor.value,
+      status: 'To-Do',
+    );
+    final int id = await DBHelper.insert(newTask);
+    _notificationService.scheduleNotification(newTask, id);
   }
 
   void getAllTasks() async {
@@ -49,7 +66,7 @@ class TaskController extends GetxController {
         await DBHelper.query() as List<Map<String, dynamic>>;
     tasksList.value = tasks.map((data) => TaskModel.fromJson(data)).toList();
     _getTodayTasks();
-    changeTaskStatusAutomatically();
+    _changeTaskStatusAutomatically();
   }
 
   void delete(TaskModel task) async {
