@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo/controllers/task_controller.dart';
 import '../../utils/constants.dart';
 import '../../utils/routes.dart';
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({Key? key}) : super(key: key);
+  MyDrawer({Key? key}) : super(key: key);
+
+  final TaskController _taskController = Get.put(TaskController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +44,10 @@ class MyDrawer extends StatelessWidget {
                   icon: Icons.favorite,
                   label: 'Favorite',
                   onPressed: () {
+                    _taskController.getTaskByStatus(TaskStatus.favorite);
                     Get.toNamed(
                       MyRoutes.getTasksByStatusRoute(),
-                      arguments: {"status": TaskStatus},
+                      arguments: {"status": TaskStatus.favorite},
                     );
                   },
                 ),

@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Colors.white,
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
