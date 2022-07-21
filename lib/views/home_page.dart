@@ -9,6 +9,8 @@ import 'package:todo/widgets/home/today_task_tile.dart';
 import '../controllers/setting_controller.dart';
 import '../controllers/task_controller.dart';
 import '../models/task_model.dart';
+import '../widgets/home/search_tasks.dart';
+import '../widgets/home/show_task_status.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -43,21 +45,22 @@ class HomePage extends StatelessWidget {
                   style: kTextStyleBoldGrey(22.0),
                 );
               }),
-              GetX<TaskController>(
-                builder: (controller) {
-                  final tasks = controller.tasksList;
+              Obx(
+                () {
+                  final tasks = _taskController.tasksList;
+                  final tasksLength = _taskController.tasksLength;
                   return tasks.isEmpty
                       ? _doNotHaveTaskForMonth()
                       : Text(
-                          'You have ${controller.tasksLength} tasks\nthis month!',
+                          'You have $tasksLength tasks\nthis month!',
                           style: kTextStyleBoldBlack(30),
                         );
                 },
               ),
               kVerticalSpace(30),
-              _textFieldForSearchTasks(),
+              SearchTasks(),
               kVerticalSpace(30),
-              _showTaskStatusRow(),
+              const ShowTaskStatus(),
               kVerticalSpace(30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -178,67 +181,6 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-
-  Widget _showTaskStatusRow() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        TaskStatusContainer(
-          label: 'To-Do',
-          iconData: Icons.assignment_rounded,
-          color: Colors.pink,
-          onTap: () {
-            _goToTasksByStatus('To-Do');
-          },
-        ),
-        TaskStatusContainer(
-            label: 'Progress',
-            iconData: Icons.assignment_late_rounded,
-            color: Colors.amber,
-            onTap: () {
-              _goToTasksByStatus('In Progress');
-            }),
-        TaskStatusContainer(
-            label: 'Done',
-            iconData: Icons.assignment_turned_in,
-            color: Colors.green,
-            onTap: () {
-              _goToTasksByStatus('Done');
-            }),
-      ],
-    );
-  }
-
-  Widget _textFieldForSearchTasks() {
-    return Container(
-      height: 70,
-      decoration: BoxDecoration(
-        color: Colors.grey.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Center(
-        child: TextField(
-          controller: _controller,
-          style: kTextStyleBoldBlack(22.0),
-          maxLines: 1,
-          autocorrect: false,
-          decoration: InputDecoration(
-            hintText: 'Search a task...',
-            prefixIcon: const Icon(Icons.search, size: 30),
-            hintStyle: kTextStyleBoldGrey(20.0),
-            border: InputBorder.none,
-          ),
-        ),
-      ),
-    );
-  }
-
-  _goToTasksByStatus(String status) {
-    Get.toNamed(
-      MyRoutes.getTasksByStatusRoute(),
-      arguments: {'status': status},
     );
   }
 }

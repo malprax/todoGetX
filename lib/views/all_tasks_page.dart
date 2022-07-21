@@ -7,8 +7,7 @@ import '../widgets/all_tasks/date_bar.dart';
 import '../widgets/all_tasks/display_tasks.dart';
 
 class AllTasksPage extends StatelessWidget {
-  AllTasksPage({Key? key}) : super(key: key);
-  final TaskController _taskController = Get.put(TaskController());
+  const AllTasksPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
