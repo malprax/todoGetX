@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
               kVerticalSpace(30),
               SearchTasks(),
               kVerticalSpace(30),
-              const ShowTaskStatus(),
+              ShowTaskStatus(),
               kVerticalSpace(30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

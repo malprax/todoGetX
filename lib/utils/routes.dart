@@ -31,7 +31,7 @@ class MyRoutes {
     ),
     GetPage(
       name: _allTasks,
-      page: () => AllTasksPage(),
+      page: () => const AllTasksPage(),
       transition: Transition.zoom,
       transitionDuration: _duration,
     ),
@@ -49,13 +49,13 @@ class MyRoutes {
     ),
     GetPage(
       name: _tasksByStatus,
-      page: () => TasksByStatus(),
+      page: () => const TasksByStatus(),
       transition: Transition.zoom,
       transitionDuration: _duration,
     ),
     GetPage(
       name: _settingsPage,
-      page: () => SettingsPage(),
+      page: () => const SettingsPage(),
       transition: Transition.zoom,
       transitionDuration: _duration,
     )

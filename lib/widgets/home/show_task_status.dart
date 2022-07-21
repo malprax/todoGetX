@@ -1,46 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo/widgets/home/task_status.dart';
+import 'package:todo/widgets/home/task_status_container.dart';
+import '../../controllers/task_controller.dart';
+import '../../utils/constants.dart';
 import '../../utils/routes.dart';
 
 class ShowTaskStatus extends StatelessWidget {
-  const ShowTaskStatus({Key? key}) : super(key: key);
-
+  ShowTaskStatus({Key? key}) : super(key: key);
+  final TaskController _taskController = Get.find<TaskController>();
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        TaskStatusContainer(
-          label: 'To-Do',
-          iconData: Icons.assignment_rounded,
-          color: Colors.pink,
-          onTap: () {
-            _goToTasksByStatus('To-Do');
-          },
-        ),
-        TaskStatusContainer(
-            label: 'Progress',
-            iconData: Icons.assignment_late_rounded,
-            color: Colors.amber,
-            onTap: () {
-              _goToTasksByStatus('In Progress');
-            }),
-        TaskStatusContainer(
-            label: 'Done',
-            iconData: Icons.assignment_turned_in,
-            color: Colors.green,
-            onTap: () {
-              _goToTasksByStatus('Done');
-            }),
-      ],
+    final listStatus = TaskStatus.values.toList();
+    return SizedBox(
+      height: 160,
+      width: double.maxFinite,
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: listStatus.length,
+        itemBuilder: (ctx, index) {
+          final status = listStatus[index];
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () => _goToTasksByStatus(status),
+              borderRadius: BorderRadius.circular(60),
+              child: TaskStatusContainer(status: status),
+            ),
+          );
+        },
+      ),
     );
   }
 
-  _goToTasksByStatus(String status) {
+  _goToTasksByStatus(TaskStatus status) {
+    _taskController.getTaskByStatus(status);
     Get.toNamed(
       MyRoutes.getTasksByStatusRoute(),
-      arguments: {'status': status},
+      arguments: {"status": status},
     );
   }
 }

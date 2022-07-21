@@ -9,6 +9,8 @@ import '../utils/constants.dart';
 
 class TaskController extends GetxController {
   var tasksList = <TaskModel>[].obs;
+  var favTask = <TaskModel>[].obs;
+  var tasksByStatus = <TaskModel>[].obs;
   var filteredTasks = <TaskModel>[].obs;
   var todayTasksList = <TaskModel>[].obs;
   int get tasksLength => tasksList.length;
@@ -43,7 +45,7 @@ class TaskController extends GetxController {
     var time = formattingTimeOfDay(TimeOfDay.now());
     for (var task in tasksList) {
       if (task.date == date && task.time == time) {
-        updateTaskStatus(task.id as int, 'In Progress');
+        updateTaskStatus(task.id as int, 'Progress');
       }
     }
   }
@@ -57,7 +59,7 @@ class TaskController extends GetxController {
       date: DateFormat.yMd().format(selectedDate.value),
       time: formattingTimeOfDay(selectedTime.value),
       color: selectedColor.value,
-      status: 'To-Do',
+      status: 'Todo',
     );
     final int id = await DBHelper.insert(newTask);
     _notificationService.scheduleNotification(newTask, id);
@@ -78,6 +80,19 @@ class TaskController extends GetxController {
     for (TaskModel task in tasksList) {
       if (task.date == selectedDate) {
         filteredTasks.add(task);
+      }
+    }
+  }
+
+  void getTaskByStatus(TaskStatus status) {
+    tasksByStatus.clear();
+    favTask.clear();
+    for (TaskModel task in tasksList) {
+      if (task.status == '${status.name.capitalize}') {
+        tasksByStatus.add(task);
+      }
+      if (task.isFavorite == 1) {
+        favTask.add(task);
       }
     }
   }

@@ -44,7 +44,7 @@ class TaskDetail extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _customRow(
+                  CustomRow(
                     color: color,
                     label: '${task.date}',
                     icon: Icons.calendar_month_sharp,
@@ -61,7 +61,7 @@ class TaskDetail extends StatelessWidget {
                       height: 20,
                     ),
                   ),
-                  _customRow(
+                  CustomRow(
                     color: color,
                     label: '${task.time}',
                     icon: Icons.access_time_rounded,
@@ -72,7 +72,7 @@ class TaskDetail extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _customRow(
+                  CustomRow(
                     color: color,
                     label: 'Status: ${task.status}',
                     icon: task.status == 'Done'
@@ -89,7 +89,7 @@ class TaskDetail extends StatelessWidget {
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8),
-                      child: _customRow(
+                      child: CustomRow(
                         color: color,
                         label: 'Share',
                         icon: Icons.share,
@@ -145,9 +145,19 @@ class TaskDetail extends StatelessWidget {
       ),
     );
   }
+}
 
-  _customRow(
-      {required String label, required IconData icon, required Color color}) {
+class CustomRow extends StatelessWidget {
+  const CustomRow(
+      {Key? key, required this.label, required this.icon, required this.color})
+      : super(key: key);
+
+  final String label;
+  final IconData icon;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       children: [
         Icon(

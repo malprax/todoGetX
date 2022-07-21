@@ -13,6 +13,17 @@ enum SocialMedia {
   const SocialMedia(this.icon);
 }
 
+enum TaskStatus {
+  todo(Icons.assignment, Colors.pink),
+  progress(Icons.incomplete_circle, Colors.amber),
+  done(Icons.done, Colors.green),
+  favorite(Icons.favorite, Colors.red);
+
+  final IconData icon;
+  final Color color;
+  const TaskStatus(this.icon, this.color);
+}
+
 TextStyle kTextStyleGrey(double size) {
   return GoogleFonts.arimaMadurai(
     textStyle: TextStyle(fontSize: size, color: Colors.grey),

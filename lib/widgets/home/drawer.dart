@@ -31,22 +31,38 @@ class MyDrawer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _drawerItem(Icons.home, 'Home', () => Get.back()),
+                DrawerItem(
+                  icon: Icons.home,
+                  label: 'Home',
+                  onPressed: () => Get.back(),
+                ),
                 kVerticalSpace(16),
-                _drawerItem(Icons.favorite, 'Favorite', () {
-                  Get.toNamed(
-                    MyRoutes.getTasksByStatusRoute(),
-                    arguments: {"status": "Favorite"},
-                  );
-                }),
+                DrawerItem(
+                  icon: Icons.favorite,
+                  label: 'Favorite',
+                  onPressed: () {
+                    Get.toNamed(
+                      MyRoutes.getTasksByStatusRoute(),
+                      arguments: {"status": TaskStatus},
+                    );
+                  },
+                ),
                 kVerticalSpace(16),
-                _drawerItem(Icons.create, 'Create Task', () {
-                  Get.toNamed(MyRoutes.getCreateTaskRoute());
-                }),
+                DrawerItem(
+                  icon: Icons.create,
+                  label: 'Create Task',
+                  onPressed: () {
+                    Get.toNamed(MyRoutes.getCreateTaskRoute());
+                  },
+                ),
                 kVerticalSpace(16),
-                _drawerItem(Icons.settings, 'Settings', () {
-                  Get.toNamed(MyRoutes.getSettingsPageRoute());
-                }),
+                DrawerItem(
+                  icon: Icons.settings,
+                  label: 'Settings',
+                  onPressed: () {
+                    Get.toNamed(MyRoutes.getSettingsPageRoute());
+                  },
+                ),
               ],
             ),
           )
@@ -54,8 +70,22 @@ class MyDrawer extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _drawerItem(IconData icon, String label, VoidCallback? onPressed) {
+class DrawerItem extends StatelessWidget {
+  const DrawerItem({
+    Key? key,
+    required this.icon,
+    required this.label,
+    this.onPressed,
+  }) : super(key: key);
+
+  final IconData icon;
+  final String label;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
       child: Row(
