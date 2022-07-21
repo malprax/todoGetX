@@ -13,10 +13,10 @@ class DisplayName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _nameController.text = _settingController.username.value;
     return Row(
       children: [
         Obx(() {
-          _nameController.text = _settingController.username.value;
           return Text(
             _settingController.username.value,
             style: kTextStyleBoldBlack(24),
