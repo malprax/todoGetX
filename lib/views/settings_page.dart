@@ -25,7 +25,7 @@ class SettingsPage extends StatelessWidget {
                 children: [
                   const FaIcon(Icons.person, size: 24),
                   const SizedBox(width: 10),
-                  Text('Username', style: kTextStyleBlack(20)),
+                  Text('UNM', style: kTextStyleBlack(20)),
                 ],
               ),
               DisplayName(),

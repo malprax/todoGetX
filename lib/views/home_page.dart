@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
                       tasks.isEmpty
                           ? const DoNotHaveMonthTasks()
                           : Text(
-                              'You have $tasksLength tasks\nthis month!',
+                              'Ada $tasksLength agenda Bulan Ini',
                               style: kTextStyleBoldBlack(30),
                             ),
                     ],
@@ -66,14 +66,14 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Today\'s Tasks', style: kTextStyleBoldBlack(30)),
+                  Text('Agenda Hari Ini', style: kTextStyleBoldBlack(30)),
                   TextButton(
                     onPressed: () {
                       Get.toNamed(
                         MyRoutes.getAllTasksPageRoute(),
                       );
                     },
-                    child: Text('See All', style: kTextStyleBoldGrey(18)),
+                    child: Text('Lihat Semua', style: kTextStyleBoldGrey(18)),
                   )
                 ],
               ),

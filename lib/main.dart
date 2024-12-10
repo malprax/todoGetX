@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'To Do App',
+      title: 'AcademicTodo',
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),

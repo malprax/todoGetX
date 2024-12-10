@@ -16,7 +16,6 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
-  google_fonts: ^3.0.1
   get: ^4.6.5
   date_picker_timeline: ^1.2.3
   intl: ^0.17.0
@@ -28,6 +27,7 @@ dependencies:
   share_plus: ^4.0.10
   flutter_local_notifications: ^9.6.1
   flutter_native_timezone: ^2.0.0
+  google_fonts: ^5.0.0
 
 
 dev_dependencies:

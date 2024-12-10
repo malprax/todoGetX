@@ -25,19 +25,19 @@ enum TaskStatus {
 }
 
 TextStyle kTextStyleGrey(double size) {
-  return GoogleFonts.arimaMadurai(
+  return GoogleFonts.arima(
     textStyle: TextStyle(fontSize: size, color: Colors.grey),
   );
 }
 
 TextStyle kTextStyleWhite(double size) {
-  return GoogleFonts.arimaMadurai(
+  return GoogleFonts.arima(
     textStyle: TextStyle(fontSize: size, color: Colors.white),
   );
 }
 
 TextStyle kTextStyleBlack(double size) {
-  return GoogleFonts.arimaMadurai(
+  return GoogleFonts.arima(
     textStyle: TextStyle(
       fontSize: size,
       color: Colors.black,
@@ -46,7 +46,7 @@ TextStyle kTextStyleBlack(double size) {
 }
 
 TextStyle kTextStyleBoldGrey(double size) {
-  return GoogleFonts.arimaMadurai(
+  return GoogleFonts.arima(
     textStyle: TextStyle(
       fontSize: size,
       color: Colors.grey,
@@ -56,7 +56,7 @@ TextStyle kTextStyleBoldGrey(double size) {
 }
 
 TextStyle kTextStyleBoldBlack(double size) {
-  return GoogleFonts.arimaMadurai(
+  return GoogleFonts.arima(
     textStyle: TextStyle(
       fontSize: size,
       color: Colors.black,
@@ -66,7 +66,7 @@ TextStyle kTextStyleBoldBlack(double size) {
 }
 
 TextStyle kTextStyleBoldAmber(double size) {
-  return GoogleFonts.arimaMadurai(
+  return GoogleFonts.arima(
     textStyle: TextStyle(
       fontSize: size,
       color: Colors.amber,
@@ -76,7 +76,7 @@ TextStyle kTextStyleBoldAmber(double size) {
 }
 
 TextStyle kTextStyleBoldWhite(double size) {
-  return GoogleFonts.arimaMadurai(
+  return GoogleFonts.arima(
     textStyle: TextStyle(
       fontSize: size,
       color: Colors.white,
@@ -101,15 +101,15 @@ const List<Color> colors = [
 String showGreeting() {
   var hour = DateTime.now().hour;
   if (hour < 12) {
-    return 'Good Morning';
+    return 'Selamat Pagi';
   } else if (hour < 18) {
-    return 'Good Afternoon';
+    return 'Selamat Sore';
   } else if (hour < 5) {
-    return 'Good Night';
+    return 'Selamat Malam';
   } else if (hour > 17 && hour < 24) {
-    return 'Good Evening';
+    return 'Selamat Malam';
   }
-  return 'Good Night';
+  return 'Selamat Malam';
 }
 
 String formattingTimeOfDay(TimeOfDay timeOfDay) {

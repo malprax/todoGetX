@@ -17,7 +17,7 @@ class MyAppBar extends StatelessWidget {
             icon: const Icon(Icons.menu_outlined),
           ),
         ),
-        Text('Todo App', style: kTextStyleBoldBlack(24)),
+        Text('AcademicTodo', style: kTextStyleBoldBlack(24)),
         const CustomCircleContainer(
           child: Icon(Icons.person),
         ),
